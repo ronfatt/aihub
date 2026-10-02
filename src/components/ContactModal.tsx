@@ -1,13 +1,14 @@
 "use client";
 
 import React, { useState, useEffect, useRef } from "react";
-import { X, Copy, Check, Send, Sparkles, MessageSquare } from "lucide-react";
+import { X, Copy, Check, Send, Sparkles, MessageSquare, ExternalLink } from "lucide-react";
 import { siteConfig, projectsData } from "@/data/siteConfig";
 
 interface ContactModalProps {
   isOpen: boolean;
   onClose: () => void;
   initialProjectTitle?: string;
+  initialProjectUrl?: string;
 }
 
 const DOMAIN_OPTIONS = [
@@ -36,10 +37,12 @@ export const ContactModal: React.FC<ContactModalProps> = ({
   isOpen,
   onClose,
   initialProjectTitle = "",
+  initialProjectUrl = "",
 }) => {
   const [name, setName] = useState("");
   const [domain, setDomain] = useState("");
-  const [selectedDemo, setSelectedDemo] = useState(initialProjectTitle);
+  const [selectedDemoTitle, setSelectedDemoTitle] = useState(initialProjectTitle);
+  const [selectedDemoUrl, setSelectedDemoUrl] = useState(initialProjectUrl);
   const [customFeature, setCustomFeature] = useState("");
   const [selectedFeatures, setSelectedFeatures] = useState<string[]>([]);
   const [copied, setCopied] = useState(false);
@@ -47,12 +50,25 @@ export const ContactModal: React.FC<ContactModalProps> = ({
   const initialFocusRef = useRef<HTMLInputElement>(null);
   const modalRef = useRef<HTMLDivElement>(null);
 
-  // Sync initial project title when opened
+  // Sync initial project data when opened
   useEffect(() => {
     if (initialProjectTitle) {
-      setSelectedDemo(initialProjectTitle);
+      setSelectedDemoTitle(initialProjectTitle);
     }
-  }, [initialProjectTitle]);
+    if (initialProjectUrl) {
+      setSelectedDemoUrl(initialProjectUrl);
+    } else if (initialProjectTitle) {
+      const match = projectsData.find((p) => p.title === initialProjectTitle);
+      if (match) setSelectedDemoUrl(match.url);
+    }
+  }, [initialProjectTitle, initialProjectUrl]);
+
+  // Handle Demo selection change
+  const handleDemoChange = (title: string) => {
+    setSelectedDemoTitle(title);
+    const match = projectsData.find((p) => p.title === title);
+    setSelectedDemoUrl(match ? match.url : "");
+  };
 
   // Handle escape key
   useEffect(() => {
@@ -93,11 +109,17 @@ export const ContactModal: React.FC<ContactModalProps> = ({
     ...(customFeature.trim() ? [customFeature.trim()] : []),
   ];
 
+  const demoDisplay = selectedDemoTitle
+    ? selectedDemoUrl
+      ? `${selectedDemoTitle}（${selectedDemoUrl}）`
+      : selectedDemoTitle
+    : "待定 / 全案交流";
+
   const generatedInquiryText = `【RMS 专属数字系统定制咨询】
 您好！我想了解命理/身心灵专属数字系统定制开发：
 · 我的称呼：${name.trim() || "老师/主理人"}
 · 专业领域：${domain || "未选择（待沟通）"}
-· 参考演示项目：${selectedDemo || "待定 / 整体咨询"}
+· 参考演示项目：${demoDisplay}
 · 期望核心功能：${combinedFeatures.length > 0 ? combinedFeatures.join("、") : "探讨专属定制方案"}
 
 希望进一步探讨开发范围与实现方案。`;
@@ -107,7 +129,6 @@ export const ContactModal: React.FC<ContactModalProps> = ({
       if (navigator.clipboard && window.isSecureContext) {
         await navigator.clipboard.writeText(generatedInquiryText);
       } else {
-        // Fallback
         const textArea = document.createElement("textarea");
         textArea.value = generatedInquiryText;
         textArea.style.position = "fixed";
@@ -125,12 +146,11 @@ export const ContactModal: React.FC<ContactModalProps> = ({
     }
   };
 
-  // Check if WhatsApp is configured
-  const hasWhatsApp = Boolean(siteConfig.whatsappNumber && siteConfig.whatsappNumber.trim());
-  const whatsappUrl = hasWhatsApp
-    ? `https://wa.me/${siteConfig.whatsappNumber.replace(/[^0-9]/g, "")}?text=${encodeURIComponent(
-        generatedInquiryText
-      )}`
+  // Clean and validate WhatsApp Number
+  const cleanNumber = (siteConfig.whatsappNumber || "").replace(/[^0-9]/g, "");
+  const hasValidWhatsApp = cleanNumber.length >= 7;
+  const whatsappUrl = hasValidWhatsApp
+    ? `https://wa.me/${cleanNumber}?text=${encodeURIComponent(generatedInquiryText)}`
     : "#";
 
   if (!isOpen) return null;
@@ -194,8 +214,8 @@ export const ContactModal: React.FC<ContactModalProps> = ({
                 参考的演示 Demo
               </label>
               <select
-                value={selectedDemo}
-                onChange={(e) => setSelectedDemo(e.target.value)}
+                value={selectedDemoTitle}
+                onChange={(e) => handleDemoChange(e.target.value)}
                 className="w-full px-3.5 py-2.5 rounded-xl border border-brand-border bg-white text-sm focus:outline-none focus:ring-1 focus:ring-brand-green focus:border-brand-green"
               >
                 <option value="">未确定（全案交流）</option>
@@ -205,6 +225,19 @@ export const ContactModal: React.FC<ContactModalProps> = ({
                   </option>
                 ))}
               </select>
+              {selectedDemoUrl && (
+                <div className="mt-1 text-[11px] text-brand-muted truncate flex items-center gap-1">
+                  <span>链接：</span>
+                  <a
+                    href={selectedDemoUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-brand-gold hover:underline truncate"
+                  >
+                    {selectedDemoUrl}
+                  </a>
+                </div>
+              )}
             </div>
           </div>
 
@@ -286,7 +319,7 @@ export const ContactModal: React.FC<ContactModalProps> = ({
                 <Sparkles className="w-3.5 h-3.5 text-brand-gold" />
                 自动生成的咨询概要
               </span>
-              <span className="text-[11px] text-stone-400">实时预览</span>
+              <span className="text-[11px] text-stone-400">实时生成</span>
             </div>
             <pre className="text-xs text-brand-text font-sans whitespace-pre-wrap bg-stone-50/60 p-3 rounded-lg border border-stone-200/60 leading-relaxed font-normal">
               {generatedInquiryText}
@@ -300,10 +333,10 @@ export const ContactModal: React.FC<ContactModalProps> = ({
               沟通说明
             </div>
             <p>
-              本展示中心第一版不存储您的表单数据，也不会显示虚假的“后台已提交”。
-              {hasWhatsApp
-                ? "您可直接通过 WhatsApp 发送，或一键复制后通过微信沟通。"
-                : "当前未直接开放外呼接口，请点击下方【复制咨询内容】，粘贴发送至我们现有的微信或沟通渠道即可。"}
+              本展示中心第一版不存储您的临时表单数据，不展示虚构的“已提交后台”。
+              {hasValidWhatsApp
+                ? "您可直接点击下方【通过 WhatsApp 发送】，系统将预填内容并唤起对话；或点击【复制咨询内容】后通过微信直接发送给我们。"
+                : "当前未直接开放直接呼出号码，请点击下方【复制咨询内容】，复制后发送给我们的现有微信或沟通渠道即可。"}
             </p>
           </div>
         </div>
@@ -332,16 +365,22 @@ export const ContactModal: React.FC<ContactModalProps> = ({
             )}
           </button>
 
-          {hasWhatsApp && (
-            <a
-              href={whatsappUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-2.5 rounded-xl text-sm font-medium bg-brand-green text-bg-warm hover:bg-brand-green-hover transition-colors shadow-xs"
-            >
-              <Send className="w-4 h-4" />
-              通过 WhatsApp 发送
-            </a>
+          {/* ONLY show WhatsApp button when a valid number is configured */}
+          {hasValidWhatsApp && (
+            <div className="w-full sm:w-auto flex flex-col items-center">
+              <a
+                href={whatsappUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-2.5 rounded-xl text-sm font-medium bg-[#173D35] text-bg-warm hover:bg-[#1E4D43] transition-colors shadow-xs"
+              >
+                <Send className="w-4 h-4" />
+                通过 WhatsApp 发送
+              </a>
+              <span className="text-[10px] text-brand-muted mt-1">
+                唤起后需在 WhatsApp 中点击发送
+              </span>
+            </div>
           )}
         </div>
       </div>

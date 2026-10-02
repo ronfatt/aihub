@@ -1,0 +1,86 @@
+"use client";
+
+import React, { useState } from "react";
+import { Navbar } from "@/components/Navbar";
+import { Hero } from "@/components/Hero";
+import { ProjectsSection } from "@/components/ProjectsSection";
+import { ServicesSection } from "@/components/ServicesSection";
+import { WorkflowSection } from "@/components/WorkflowSection";
+import { ContactSection } from "@/components/ContactSection";
+import { Footer } from "@/components/Footer";
+import { ContactModal } from "@/components/ContactModal";
+import { Project, SiteConfig, siteConfig as defaultSiteConfig, projectsData } from "@/data/siteConfig";
+
+interface HomeClientProps {
+  initialProjects?: Project[];
+  initialConfig?: SiteConfig;
+}
+
+export const HomeClient: React.FC<HomeClientProps> = ({
+  initialProjects = projectsData,
+  initialConfig = defaultSiteConfig,
+}) => {
+  const [isContactOpen, setIsContactOpen] = useState(false);
+  const [targetProjectTitle, setTargetProjectTitle] = useState("");
+  const [targetProjectUrl, setTargetProjectUrl] = useState("");
+
+  const handleOpenContact = (projectTitle?: string, projectUrl?: string) => {
+    setTargetProjectTitle(projectTitle || "");
+    setTargetProjectUrl(projectUrl || "");
+    setIsContactOpen(true);
+  };
+
+  const handleCloseContact = () => {
+    setIsContactOpen(false);
+  };
+
+  const handleExploreProjects = () => {
+    const el = document.getElementById("projects");
+    if (el) {
+      el.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
+  return (
+    <div className="min-h-screen bg-bg-warm text-brand-text flex flex-col selection:bg-brand-green selection:text-bg-warm">
+      {/* Top Navbar */}
+      <Navbar onOpenContact={() => handleOpenContact()} />
+
+      <main className="flex-1">
+        {/* Hero Section */}
+        <Hero
+          onOpenContact={(title) => handleOpenContact(title)}
+          onExploreProjects={handleExploreProjects}
+        />
+
+        {/* Demo Projects Showcase */}
+        <ProjectsSection
+          initialProjects={initialProjects}
+          onCustomSimilar={(projectTitle, projectUrl) =>
+            handleOpenContact(projectTitle, projectUrl)
+          }
+        />
+
+        {/* Custom Services Directions */}
+        <ServicesSection onOpenContact={() => handleOpenContact()} />
+
+        {/* 4-Step Collaboration Workflow */}
+        <WorkflowSection />
+
+        {/* Bottom Contact CTA */}
+        <ContactSection onOpenContact={() => handleOpenContact()} />
+      </main>
+
+      {/* Footer */}
+      <Footer />
+
+      {/* Contact & Inquiry Modal */}
+      <ContactModal
+        isOpen={isContactOpen}
+        onClose={handleCloseContact}
+        initialProjectTitle={targetProjectTitle}
+        initialProjectUrl={targetProjectUrl}
+      />
+    </div>
+  );
+};
