@@ -98,7 +98,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenContact }) => {
             className="w-full text-left py-2 text-xs font-mono uppercase tracking-widest text-atelier-secondary hover:text-white flex items-center justify-between border-b border-white/[0.06]"
           >
             <span>01 / 演示作品</span>
-            <span className="text-atelier-muted">8 DEMOS</span>
+            <span className="text-atelier-muted">PROTOTYPES</span>
           </button>
           <button
             onClick={() => scrollTo("services")}

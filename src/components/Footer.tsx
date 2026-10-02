@@ -33,7 +33,7 @@ export const Footer: React.FC = () => {
             <ul className="space-y-2">
               <li>
                 <Link href="/#projects" className="hover:text-white transition-colors">
-                  01 // 演示作品 (8 DEMOS)
+                  01 // 演示作品 (EXHIBITION)
                 </Link>
               </li>
               <li>

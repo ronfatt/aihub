@@ -2,6 +2,7 @@
 
 import React from "react";
 import { ArrowDown, ArrowUpRight, Sparkles } from "lucide-react";
+import { projectsData } from "@/data/siteConfig";
 
 interface HeroProps {
   onOpenContact: (projectTitle?: string) => void;
@@ -75,7 +76,7 @@ export const Hero: React.FC<HeroProps> = ({
             <div className="p-4 rounded-xl border border-white/[0.08] bg-white/[0.02] backdrop-blur-sm space-y-2 max-w-xs">
               <div className="flex items-center justify-between text-[10px] font-mono text-atelier-muted uppercase tracking-widest border-b border-white/[0.06] pb-2">
                 <span>CURATION INDEX</span>
-                <span className="text-atelier-emerald">08 LIVE PROTOTYPES</span>
+                <span className="text-atelier-emerald">{String(projectsData.length).padStart(2, "0")} LIVE PROTOTYPES</span>
               </div>
               <div className="text-[11px] font-mono text-atelier-secondary leading-relaxed text-left">
                 ARCHIVE: SACRED SACRAMENTS, ASTROLOGY, I CHING, NUMEROLOGY &amp; MINDFULNESS.

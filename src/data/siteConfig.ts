@@ -319,4 +319,34 @@ export const projectsData: Project[] = [
     accentColor: "#22473D",
     coverPattern: "cards",
   },
+  {
+    id: "qimen",
+    slug: "qimen",
+    title: "观己",
+    description: "以传统奇门遁甲为镜像工具，结合现代心理学与生活对话的高品质个人咨询体验",
+    url: "https://qimen-pi.vercel.app/",
+    coverImage: "/covers/qimen.png",
+    coverAlt: "观己 奇门遁甲与个人咨询交互原型封面",
+    category: "待分类",
+    tags: ["奇门遁甲", "心理镜像", "命盘演算"],
+    screenshots: [
+      {
+        url: "/covers/qimen.png",
+        alt: "观己 奇门遁甲与个人咨询真实界面截图",
+      },
+    ],
+    suitableFor: [
+      "适合奇门遁甲研习导师与现代心理咨询师",
+      "适合打造高品质深度认知报告与个人咨询预约流程",
+    ],
+    customDirections: [
+      "可定制为独家飞盘/转盘排盘规则的自动化推演系统",
+      "可接入自动化问卷与深度解读报告交付系统",
+    ],
+    featured: false,
+    sortOrder: 9,
+    visible: true,
+    accentColor: "#1B2824",
+    coverPattern: "compass",
+  },
 ];
