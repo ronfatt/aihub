@@ -326,7 +326,7 @@ export const projectsData: Project[] = [
     description: "以传统奇门遁甲为镜像工具，结合现代心理学与生活对话的高品质个人咨询体验",
     url: "https://qimen-pi.vercel.app/",
     coverImage: "/covers/qimen.png",
-    coverAlt: "观己 奇门遁甲与个人咨询交互原型封面",
+    coverAlt: "观己 奇门心智罗盘与个人咨询演示封面",
     category: "待分类",
     tags: ["奇门遁甲", "心理镜像", "命盘演算"],
     screenshots: [
@@ -348,5 +348,35 @@ export const projectsData: Project[] = [
     visible: true,
     accentColor: "#1B2824",
     coverPattern: "compass",
+  },
+  {
+    id: "ohcard",
+    slug: "ohcard",
+    title: "OH Card",
+    description: "以潜意识投射卡（欧卡）双层图文系统为核心的心灵对话与咨询原型",
+    url: "https://ohcard.vercel.app/",
+    coverImage: "/covers/ohcard.png",
+    coverAlt: "OH Card 潜意识投射卡数字探索与身心灵体验封面",
+    category: "待分类",
+    tags: ["OH卡", "潜意识", "心灵投射"],
+    screenshots: [
+      {
+        url: "/covers/ohcard.png",
+        alt: "OH Card 潜意识图卡数字体验封面",
+      },
+    ],
+    suitableFor: [
+      "适合心理咨询师、OH卡教练与身心灵个案疗愈导师",
+      "适合开展线上远程牌卡抽取、潜意识觉察与咨询工作坊",
+    ],
+    customDirections: [
+      "可定制为流派专属图卡/词卡库在线抽取与动态投射画布",
+      "可支持咨询过程录音要点记录与案主启发报告一键导出",
+    ],
+    featured: false,
+    sortOrder: 10,
+    visible: true,
+    accentColor: "#D92638",
+    coverPattern: "cards",
   },
 ];
