@@ -6,62 +6,74 @@ import { siteConfig } from "@/data/siteConfig";
 
 export const Footer: React.FC = () => {
   return (
-    <footer className="bg-[#EBEEF2] text-heading border-t border-brand-border py-10 sm:py-12">
-      <div className="max-w-container mx-auto px-5 lg:px-16">
-        <div className="flex flex-col md:flex-row md:items-start justify-between gap-8 pb-8 border-b border-brand-border/60">
-          {/* Brand Info */}
-          <div className="space-y-2 max-w-sm">
-            <h3 className="text-base font-semibold text-heading">
-              {siteConfig.brandName}
-            </h3>
-            <p className="text-xs text-muted leading-relaxed">
-              命理与身心灵数字产品演示中心。专注为文化学者与导师打造独立品牌系统与交互原型。
+    <footer className="border-t border-white/[0.08] bg-[#07090B] py-12 sm:py-16 text-xs text-atelier-secondary">
+      <div className="max-w-exhibition mx-auto px-5 sm:px-8 lg:px-12">
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-8 pb-10 border-b border-white/[0.06]">
+          {/* Colophon branding */}
+          <div className="md:col-span-6 space-y-3">
+            <div className="flex items-center gap-2">
+              <span className="w-1.5 h-1.5 rounded-full bg-atelier-emerald" />
+              <h3 className="font-sans font-bold text-sm text-white tracking-tight">
+                {siteConfig.brandName}
+              </h3>
+            </div>
+            <p className="text-[11px] font-mono tracking-widest text-atelier-gold uppercase">
+              DIGITAL EXPERIENCES FOR PRACTITIONERS &amp; MASTERS
+            </p>
+            <p className="text-xs text-atelier-muted leading-relaxed max-w-md font-sans">
+              为东方玄学、易经风水、紫微星盘与身心灵导师打造不可复制的独立数字殿堂与交互原型。
             </p>
           </div>
 
-          {/* Links & Statement */}
-          <div className="flex flex-col sm:flex-row gap-8 sm:gap-12 text-xs">
-            <div className="space-y-2">
-              <span className="font-semibold text-heading text-[11px] uppercase tracking-wider">
-                快捷直达
-              </span>
-              <ul className="space-y-1.5 text-muted">
-                <li>
-                  <Link href="/#projects" className="hover:text-heading transition-colors">
-                    演示作品
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/#services" className="hover:text-heading transition-colors">
-                    定制方向
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/#workflow" className="hover:text-heading transition-colors">
-                    合作流程
-                  </Link>
-                </li>
-              </ul>
+          {/* Quick Links */}
+          <div className="md:col-span-3 space-y-2.5 font-mono text-[11px]">
+            <div className="text-white/40 uppercase tracking-widest text-[10px]">
+              INDEX // 快捷直达
             </div>
+            <ul className="space-y-2">
+              <li>
+                <Link href="/#projects" className="hover:text-white transition-colors">
+                  01 // 演示作品 (8 DEMOS)
+                </Link>
+              </li>
+              <li>
+                <Link href="/#services" className="hover:text-white transition-colors">
+                  02 // 定制方向 (CAPABILITIES)
+                </Link>
+              </li>
+              <li>
+                <Link href="/#workflow" className="hover:text-white transition-colors">
+                  03 // 合作流程 (PROTOCOL)
+                </Link>
+              </li>
+            </ul>
+          </div>
 
-            <div className="space-y-2 max-w-xs">
-              <span className="font-semibold text-heading text-[11px] uppercase tracking-wider">
-                文化探索说明
-              </span>
-              <p className="text-muted leading-relaxed text-xs">
-                {siteConfig.disclaimer}
-              </p>
+          {/* Cultural Note */}
+          <div className="md:col-span-3 space-y-2">
+            <div className="text-white/40 font-mono uppercase tracking-widest text-[10px]">
+              DISCLAIMER // 文化探索声明
             </div>
+            <p className="text-xs text-atelier-muted leading-relaxed font-sans">
+              {siteConfig.disclaimer}
+            </p>
+            <p className="text-[10px] font-mono text-white/30 pt-1">
+              PROTOTYPES FOR DEMONSTRATION &amp; PRIVATE COMMISSION EXPLORATION.
+            </p>
           </div>
         </div>
 
-        {/* Bottom copyright line */}
-        <div className="pt-6 flex flex-col sm:flex-row items-center justify-between text-xs text-muted gap-3">
+        {/* Studio Bottom Bar */}
+        <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-[11px] font-mono text-atelier-muted">
           <div>
-            © {new Date().getFullYear()} {siteConfig.brandName}. 保留所有权利。
+            © {new Date().getFullYear()} {siteConfig.brandName}. ALL RIGHTS RESERVED.
           </div>
-          <div className="text-[11px] font-mono">
-            MODERN DIGITAL EXPERIENCES
+          <div className="flex items-center gap-4 text-[10px] uppercase tracking-widest">
+            <span>TOKYO</span>
+            <span>·</span>
+            <span>SHANGHAI</span>
+            <span>·</span>
+            <span>SINGAPORE</span>
           </div>
         </div>
       </div>

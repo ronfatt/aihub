@@ -3,16 +3,16 @@
 @tailwind utilities;
 
 :root {
-  --canvas: #F5F6F8;
-  --heading: #17212B;
-  --brand-green: #173D35;
-  --muted: #5E6977;
+  --bg: #0A0C0E;
+  --text: #F8FAFC;
+  --accent-emerald: #10B981;
+  --accent-gold: #D4AF37;
 }
 
 html {
   scroll-behavior: smooth;
-  background-color: #F5F6F8;
-  color: #17212B;
+  background-color: #0A0C0E;
+  color: #F8FAFC;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -34,28 +34,31 @@ html {
 body {
   min-height: 100vh;
   overflow-x: hidden;
-  background-color: #F5F6F8;
-  color: #17212B;
-  font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+  background-color: #0A0C0E;
+  color: #F8FAFC;
+  background-image: 
+    radial-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px);
+  background-size: 32px 32px;
 }
 
-/* Crisp Clean Scrollbar */
+/* Luxury Dark Gallery Scrollbar */
 ::-webkit-scrollbar {
-  width: 6px;
-  height: 6px;
+  width: 5px;
+  height: 5px;
 }
 ::-webkit-scrollbar-track {
-  background: #F5F6F8;
+  background: #0A0C0E;
 }
 ::-webkit-scrollbar-thumb {
-  background: #D2D6DE;
-  border-radius: 3px;
+  background: #232830;
+  border-radius: 2px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #94A3B8;
+  background: #10B981;
 }
 
+/* Electric Emerald / Gold Selection */
 ::selection {
-  background-color: #173D35;
-  color: #FFFFFF;
+  background-color: #10B981;
+  color: #0A0C0E;
 }

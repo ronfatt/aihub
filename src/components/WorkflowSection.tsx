@@ -5,34 +5,48 @@ import { siteConfig } from "@/data/siteConfig";
 
 export const WorkflowSection: React.FC = () => {
   return (
-    <section id="workflow" className="py-12 sm:py-16 bg-[#F5F6F8] border-t border-brand-border">
-      <div className="max-w-container mx-auto px-5 lg:px-16">
-        <div className="max-w-2xl mb-8 sm:mb-10">
-          <h2 className="text-2xl sm:text-3xl font-sans font-bold text-heading tracking-tight">
-            简洁合作流程
+    <section id="workflow" className="py-16 sm:py-20 border-b border-white/[0.08]">
+      <div className="max-w-exhibition mx-auto px-5 sm:px-8 lg:px-12">
+        <div className="max-w-2xl mb-10 sm:mb-12 space-y-2">
+          <div className="text-[10px] font-mono tracking-widest text-atelier-emerald uppercase">
+            COLLABORATION PROTOCOL // 合作流程
+          </div>
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-sans font-extrabold text-white tracking-tight">
+            清晰高效的推进流程
           </h2>
-          <p className="mt-1.5 text-xs sm:text-sm text-muted">
-            清晰高效推进，保障学术逻辑严谨性与系统可用性。
+          <p className="text-xs sm:text-sm text-atelier-secondary font-sans leading-relaxed">
+            分阶段严格推进，兼顾学术逻辑严谨性、数字视觉审美与工程交付质量。
           </p>
         </div>
 
-        {/* 4 Steps Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5">
-          {siteConfig.workflowSteps.map((step) => (
+        {/* 4 Architectural Step Cards */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+          {siteConfig.workflowSteps.map((step, idx) => (
             <div
               key={step.step}
-              className="bg-white rounded-lg p-5 border border-brand-border shadow-card flex flex-col justify-between space-y-3"
+              className="relative bg-[#13161B] rounded-xl p-6 border border-white/[0.08] hover:border-white/20 transition-all shadow-atelier flex flex-col justify-between space-y-4"
             >
-              <div>
-                <span className="font-mono text-xs font-semibold text-brand-gold">
-                  STEP {step.step}
-                </span>
-                <h3 className="text-sm sm:text-base font-sans font-semibold text-heading mt-1">
+              <div className="space-y-3">
+                <div className="flex items-center justify-between text-[11px] font-mono border-b border-white/[0.06] pb-3">
+                  <span className="text-atelier-gold font-bold">
+                    PHASE 0{idx + 1}
+                  </span>
+                  <span className="text-atelier-muted">
+                    STEP {step.step}
+                  </span>
+                </div>
+
+                <h3 className="text-base font-sans font-bold text-white tracking-tight">
                   {step.title}
                 </h3>
-                <p className="text-xs text-muted mt-1.5 leading-relaxed">
+
+                <p className="text-xs text-atelier-secondary leading-relaxed font-sans">
                   {step.desc}
                 </p>
+              </div>
+
+              <div className="text-[10px] font-mono text-white/30 uppercase tracking-widest pt-2">
+                VERIFIED PROCESS
               </div>
             </div>
           ))}

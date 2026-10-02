@@ -9,45 +9,64 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        canvas: "#F5F6F8", // Light cool gray background
-        surface: "#FFFFFF", // Clean white card surface
-        heading: "#17212B", // Primary text
-        muted: "#5E6977", // Secondary text
-        brand: {
-          green: "#173D35", // Deep ink green
-          "green-hover": "#1F4E44",
-          "green-light": "#E9EFEA",
-          gold: "#9E824F", // Subtle restrained gold
-          border: "#E2E5EB", // Clean subtle border
-          "border-subtle": "#ECEEF2",
+        atelier: {
+          bg: "#0A0C0E",        // Deep obsidian gallery space
+          surface: "#111418",   // Subtle elevated surface
+          card: "#15191E",      // Elevated showcase card
+          cardHover: "#1A2026",
+          border: "rgba(255, 255, 255, 0.08)",
+          borderLight: "rgba(255, 255, 255, 0.16)",
+          emerald: "#10B981",   // Modern digital emerald
+          emeraldGlow: "rgba(16, 185, 129, 0.15)",
+          gold: "#D4AF37",      // Haute couture gold accent
+          goldLight: "rgba(212, 175, 55, 0.12)",
+          text: "#F8FAFC",      // Pure optic white for headings
+          secondary: "#94A3B8", // Cool slate
+          muted: "#64748B",     // Subtle monospaced slate
         },
       },
       fontFamily: {
         sans: [
           "-apple-system",
           "BlinkMacSystemFont",
+          '"Plus Jakarta Sans"',
+          '"Space Grotesk"',
           '"PingFang SC"',
           '"Hiragino Sans GB"',
           '"Microsoft YaHei"',
-          '"Noto Sans SC"',
           "system-ui",
           "sans-serif",
         ],
+        mono: [
+          '"SF Mono"',
+          '"JetBrains Mono"',
+          '"Fira Code"',
+          "Menlo",
+          "Monaco",
+          "Consolas",
+          "monospace",
+        ],
         serif: [
+          '"Cinzel"',
           '"Songti SC"',
           '"Noto Serif SC"',
-          '"Source Han Serif SC"',
           "Georgia",
           "serif",
         ],
       },
+      letterSpacing: {
+        tighter: "-0.04em",
+        tight: "-0.02em",
+        widest: "0.2em",
+        extreme: "0.3em",
+      },
       boxShadow: {
-        card: "0 1px 3px rgba(15, 23, 42, 0.05), 0 1px 2px rgba(15, 23, 42, 0.03)",
-        hover: "0 8px 24px -4px rgba(15, 23, 42, 0.08), 0 2px 6px -1px rgba(15, 23, 42, 0.04)",
-        modal: "0 24px 48px -12px rgba(15, 23, 42, 0.18)",
+        atelier: "0 0 0 1px rgba(255, 255, 255, 0.08), 0 20px 40px -15px rgba(0, 0, 0, 0.7)",
+        glow: "0 0 30px -5px rgba(16, 185, 129, 0.25)",
+        goldGlow: "0 0 30px -5px rgba(212, 175, 55, 0.2)",
       },
       maxWidth: {
-        container: "1280px",
+        exhibition: "1380px",
       },
     },
   },

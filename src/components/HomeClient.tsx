@@ -41,7 +41,7 @@ export const HomeClient: React.FC<HomeClientProps> = ({
   };
 
   return (
-    <div className="min-h-screen bg-[#F5F6F8] text-heading flex flex-col selection:bg-brand-green selection:text-white">
+    <div className="min-h-screen bg-[#0A0C0E] text-white flex flex-col selection:bg-atelier-emerald selection:text-black">
       {/* Top Navbar */}
       <Navbar onOpenContact={() => handleOpenContact()} />
 

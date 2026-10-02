@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useEffect, useRef } from "react";
-import { X, Copy, Check, Send, Sparkles, MessageSquare, ExternalLink } from "lucide-react";
+import { X, Copy, Check, Send, Sparkles, MessageSquare } from "lucide-react";
 import { siteConfig, projectsData } from "@/data/siteConfig";
 
 interface ContactModalProps {
@@ -50,7 +50,6 @@ export const ContactModal: React.FC<ContactModalProps> = ({
   const initialFocusRef = useRef<HTMLInputElement>(null);
   const modalRef = useRef<HTMLDivElement>(null);
 
-  // Sync initial project data when opened
   useEffect(() => {
     if (initialProjectTitle) {
       setSelectedDemoTitle(initialProjectTitle);
@@ -63,14 +62,12 @@ export const ContactModal: React.FC<ContactModalProps> = ({
     }
   }, [initialProjectTitle, initialProjectUrl]);
 
-  // Handle Demo selection change
   const handleDemoChange = (title: string) => {
     setSelectedDemoTitle(title);
     const match = projectsData.find((p) => p.title === title);
     setSelectedDemoUrl(match ? match.url : "");
   };
 
-  // Handle escape key
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === "Escape" && isOpen) {
@@ -81,7 +78,6 @@ export const ContactModal: React.FC<ContactModalProps> = ({
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, [isOpen, onClose]);
 
-  // Handle focus when opened
   useEffect(() => {
     if (isOpen) {
       document.body.style.overflow = "hidden";
@@ -103,7 +99,6 @@ export const ContactModal: React.FC<ContactModalProps> = ({
     );
   };
 
-  // Compile formatted inquiry text
   const combinedFeatures = [
     ...selectedFeatures,
     ...(customFeature.trim() ? [customFeature.trim()] : []),
@@ -146,7 +141,6 @@ export const ContactModal: React.FC<ContactModalProps> = ({
     }
   };
 
-  // Clean and validate WhatsApp Number
   const cleanNumber = (siteConfig.whatsappNumber || "").replace(/[^0-9]/g, "");
   const hasValidWhatsApp = cleanNumber.length >= 7;
   const whatsappUrl = hasValidWhatsApp
@@ -157,7 +151,7 @@ export const ContactModal: React.FC<ContactModalProps> = ({
 
   return (
     <div
-      className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 md:p-6 bg-[#17212B]/50 backdrop-blur-sm transition-opacity"
+      className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 md:p-6 bg-black/80 backdrop-blur-md transition-opacity"
       role="dialog"
       aria-modal="true"
       aria-labelledby="contact-modal-title"
@@ -167,36 +161,39 @@ export const ContactModal: React.FC<ContactModalProps> = ({
     >
       <div
         ref={modalRef}
-        className="relative w-full max-w-2xl max-h-[92vh] overflow-y-auto bg-white border border-brand-border rounded-xl shadow-modal flex flex-col text-heading animate-in fade-in zoom-in-95 duration-150"
+        className="relative w-full max-w-2xl max-h-[92vh] overflow-y-auto bg-[#0E1115] border border-white/10 rounded-2xl shadow-2xl flex flex-col text-white animate-in fade-in zoom-in-95 duration-200"
       >
         {/* Modal Header */}
-        <div className="sticky top-0 z-10 flex items-center justify-between px-6 py-4 border-b border-brand-border bg-[#F5F6F8]/95 backdrop-blur-sm">
-          <div>
-            <h3
-              id="contact-modal-title"
-              className="text-base sm:text-lg font-sans font-semibold text-heading"
-            >
-              讨论专属数字系统定制
-            </h3>
-            <p className="text-xs text-muted mt-0.5 font-sans">
-              填写您的专业偏好，即可一键生成结构化咨询方案
+        <div className="sticky top-0 z-10 flex items-center justify-between px-6 py-4 border-b border-white/[0.08] bg-[#0E1115]/95 backdrop-blur-md">
+          <div className="space-y-0.5">
+            <div className="flex items-center gap-2">
+              <span className="w-1.5 h-1.5 rounded-full bg-atelier-gold" />
+              <h3
+                id="contact-modal-title"
+                className="text-base sm:text-lg font-sans font-bold text-white tracking-tight"
+              >
+                专属数字系统定制咨询
+              </h3>
+            </div>
+            <p className="text-xs font-mono text-atelier-muted">
+              ATELIER COMMISSION DOSSIER // 填写偏好即时生成结构化方案
             </p>
           </div>
           <button
             onClick={onClose}
             aria-label="关闭面板"
-            className="p-1.5 rounded-lg text-muted hover:text-heading hover:bg-brand-border/40 transition-colors"
+            className="p-1.5 rounded-lg text-atelier-muted hover:text-white hover:bg-white/10 transition-colors"
           >
             <X className="w-5 h-5" />
           </button>
         </div>
 
         {/* Modal Body */}
-        <div className="p-6 space-y-6">
-          {/* Step 1: Basic Info */}
+        <div className="p-6 space-y-6 text-xs font-sans">
+          {/* Inputs */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
-              <label className="block text-xs font-medium text-brand-green mb-1.5">
+              <label className="block text-[11px] font-mono text-atelier-muted uppercase mb-1.5">
                 您的称呼 / 堂号 / 品牌
               </label>
               <input
@@ -205,18 +202,18 @@ export const ContactModal: React.FC<ContactModalProps> = ({
                 placeholder="例如：陈老师、玄真堂"
                 value={name}
                 onChange={(e) => setName(e.target.value)}
-                className="w-full px-3.5 py-2.5 rounded-xl border border-brand-border bg-white text-sm focus:outline-none focus:ring-1 focus:ring-brand-green focus:border-brand-green placeholder:text-stone-400"
+                className="w-full px-3.5 py-2.5 rounded-lg border border-white/10 bg-[#14181F] text-white text-xs placeholder:text-atelier-muted/60 focus:outline-none focus:border-atelier-emerald"
               />
             </div>
 
             <div>
-              <label className="block text-xs font-medium text-brand-green mb-1.5">
-                参考的演示 Demo
+              <label className="block text-[11px] font-mono text-atelier-muted uppercase mb-1.5">
+                参考的演示 DEMO
               </label>
               <select
                 value={selectedDemoTitle}
                 onChange={(e) => handleDemoChange(e.target.value)}
-                className="w-full px-3.5 py-2.5 rounded-xl border border-brand-border bg-white text-sm focus:outline-none focus:ring-1 focus:ring-brand-green focus:border-brand-green"
+                className="w-full px-3.5 py-2.5 rounded-lg border border-white/10 bg-[#14181F] text-white text-xs focus:outline-none focus:border-atelier-emerald"
               >
                 <option value="">未确定（全案交流）</option>
                 {projectsData.map((p) => (
@@ -225,25 +222,12 @@ export const ContactModal: React.FC<ContactModalProps> = ({
                   </option>
                 ))}
               </select>
-              {selectedDemoUrl && (
-                <div className="mt-1 text-[11px] text-brand-muted truncate flex items-center gap-1">
-                  <span>链接：</span>
-                  <a
-                    href={selectedDemoUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-brand-gold hover:underline truncate"
-                  >
-                    {selectedDemoUrl}
-                  </a>
-                </div>
-              )}
             </div>
           </div>
 
-          {/* Step 2: Domain selection */}
+          {/* Domain Selection */}
           <div>
-            <label className="block text-xs font-medium text-brand-green mb-2">
+            <label className="block text-[11px] font-mono text-atelier-muted uppercase mb-2">
               专业领域分类
             </label>
             <div className="flex flex-wrap gap-2">
@@ -254,10 +238,10 @@ export const ContactModal: React.FC<ContactModalProps> = ({
                     key={item}
                     type="button"
                     onClick={() => setDomain(isSelected ? "" : item)}
-                    className={`px-3 py-1.5 text-xs rounded-lg border transition-all ${
+                    className={`px-3 py-1.5 text-xs rounded-md border transition-all ${
                       isSelected
-                        ? "bg-brand-green text-bg-warm border-brand-green font-medium shadow-xs"
-                        : "bg-white text-brand-text border-brand-border hover:border-brand-green/60"
+                        ? "bg-atelier-emerald text-black border-atelier-emerald font-bold"
+                        : "bg-white/[0.03] text-atelier-secondary border-white/10 hover:border-white/30 hover:text-white"
                     }`}
                   >
                     {item}
@@ -267,10 +251,10 @@ export const ContactModal: React.FC<ContactModalProps> = ({
             </div>
           </div>
 
-          {/* Step 3: Desired features */}
+          {/* Features */}
           <div>
-            <label className="block text-xs font-medium text-brand-green mb-2">
-              想制作的核心功能（可多选）
+            <label className="block text-[11px] font-mono text-atelier-muted uppercase mb-2">
+              期望打造的核心功能（可多选）
             </label>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
               {FEATURE_OPTIONS.map((feat) => {
@@ -280,18 +264,18 @@ export const ContactModal: React.FC<ContactModalProps> = ({
                     key={feat}
                     type="button"
                     onClick={() => toggleFeature(feat)}
-                    className={`text-left px-3 py-2 rounded-lg border text-xs flex items-center justify-between transition-all ${
+                    className={`text-left px-3 py-2 rounded-md border text-xs flex items-center justify-between transition-all ${
                       active
-                        ? "bg-brand-green/10 text-brand-green border-brand-green font-medium"
-                        : "bg-white text-stone-700 border-brand-border hover:border-brand-green/40"
+                        ? "bg-atelier-emerald/10 text-white border-atelier-emerald/60"
+                        : "bg-white/[0.02] text-atelier-secondary border-white/10 hover:border-white/20 hover:text-white"
                     }`}
                   >
                     <span>{feat}</span>
                     <span
-                      className={`w-4 h-4 rounded flex items-center justify-center text-[10px] ml-2 ${
+                      className={`w-3.5 h-3.5 rounded flex items-center justify-center text-[10px] ml-2 ${
                         active
-                          ? "bg-brand-green text-white"
-                          : "border border-brand-border text-transparent"
+                          ? "bg-atelier-emerald text-black font-bold"
+                          : "border border-white/20 text-transparent"
                       }`}
                     >
                       ✓
@@ -301,61 +285,61 @@ export const ContactModal: React.FC<ContactModalProps> = ({
               })}
             </div>
 
-            <div className="mt-3">
+            <div className="mt-2.5">
               <input
                 type="text"
                 placeholder="补充其他具体想法或特殊算法需求..."
                 value={customFeature}
                 onChange={(e) => setCustomFeature(e.target.value)}
-                className="w-full px-3.5 py-2 rounded-xl border border-brand-border bg-white text-xs focus:outline-none focus:ring-1 focus:ring-brand-green focus:border-brand-green placeholder:text-stone-400"
+                className="w-full px-3.5 py-2 rounded-lg border border-white/10 bg-[#14181F] text-white text-xs placeholder:text-atelier-muted/60 focus:outline-none focus:border-atelier-emerald"
               />
             </div>
           </div>
 
-          {/* Preview of generated inquiry text */}
-          <div className="bg-white/80 border border-brand-border rounded-xl p-4 space-y-2">
-            <div className="flex items-center justify-between text-xs text-brand-muted">
-              <span className="flex items-center gap-1.5 font-medium text-brand-green">
-                <Sparkles className="w-3.5 h-3.5 text-brand-gold" />
-                自动生成的咨询概要
+          {/* Code Dossier Preview */}
+          <div className="bg-[#12161C] border border-white/10 rounded-xl p-4 space-y-2">
+            <div className="flex items-center justify-between text-[11px] font-mono text-atelier-muted">
+              <span className="flex items-center gap-1.5 text-atelier-gold font-medium">
+                <Sparkles className="w-3.5 h-3.5 text-atelier-gold" />
+                自动生成的咨询方案概要
               </span>
-              <span className="text-[11px] text-stone-400">实时生成</span>
+              <span>LIVE DOSSIER</span>
             </div>
-            <pre className="text-xs text-brand-text font-sans whitespace-pre-wrap bg-stone-50/60 p-3 rounded-lg border border-stone-200/60 leading-relaxed font-normal">
+            <pre className="text-xs font-mono whitespace-pre-wrap bg-[#0A0C0E] p-3 rounded-lg border border-white/[0.06] text-white/90 leading-relaxed">
               {generatedInquiryText}
             </pre>
           </div>
 
-          {/* Notice & Honest transmission statement */}
-          <div className="rounded-xl p-3.5 bg-amber-50/60 border border-amber-200/60 text-xs text-stone-600 space-y-1">
-            <div className="font-medium text-stone-800 flex items-center gap-1.5">
-              <MessageSquare className="w-3.5 h-3.5 text-amber-700" />
-              沟通说明
+          {/* Notice */}
+          <div className="rounded-xl p-3.5 bg-white/[0.02] border border-white/10 text-xs text-atelier-secondary space-y-1">
+            <div className="font-mono text-atelier-gold flex items-center gap-1.5 text-[11px]">
+              <MessageSquare className="w-3.5 h-3.5 text-atelier-gold" />
+              沟通提示 // STATEMENT
             </div>
-            <p>
-              本展示中心第一版不存储您的临时表单数据，不展示虚构的“已提交后台”。
+            <p className="leading-relaxed">
+              本中心第一版不存储表单临时数据。
               {hasValidWhatsApp
-                ? "您可直接点击下方【通过 WhatsApp 发送】，系统将预填内容并唤起对话；或点击【复制咨询内容】后通过微信直接发送给我们。"
-                : "当前未直接开放直接呼出号码，请点击下方【复制咨询内容】，复制后发送给我们的现有微信或沟通渠道即可。"}
+                ? "您可直接点击下方【通过 WhatsApp 发送】唤起对话，或点击【复制咨询内容】后通过微信直接发送给我们。"
+                : "请点击下方【复制咨询内容】，直接粘贴发送至我们现有的微信或沟通渠道即可。"}
             </p>
           </div>
         </div>
 
         {/* Modal Footer Actions */}
-        <div className="sticky bottom-0 z-10 px-6 py-4 border-t border-brand-border/70 bg-[#F7F5F0]/95 backdrop-blur-sm flex flex-col sm:flex-row items-center justify-end gap-3">
+        <div className="sticky bottom-0 z-10 px-6 py-4 border-t border-white/[0.08] bg-[#0E1115]/95 backdrop-blur-md flex flex-col sm:flex-row items-center justify-end gap-3">
           <button
             type="button"
             onClick={handleCopy}
-            className={`w-full sm:w-auto inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl text-sm font-medium transition-all ${
+            className={`w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-2.5 rounded-full text-xs font-mono uppercase tracking-wider font-semibold transition-all ${
               copied
-                ? "bg-emerald-700 text-white shadow-sm"
-                : "bg-white text-brand-green border border-brand-green/30 hover:border-brand-green hover:bg-stone-50"
+                ? "bg-atelier-emerald text-black shadow-glow"
+                : "bg-white/[0.06] text-white border border-white/20 hover:border-white/40"
             }`}
           >
             {copied ? (
               <>
-                <Check className="w-4 h-4 text-emerald-200" />
-                已复制咨询内容，请发送给开发团队
+                <Check className="w-4 h-4 text-black" />
+                已复制咨询内容，请发送给团队
               </>
             ) : (
               <>
@@ -365,19 +349,18 @@ export const ContactModal: React.FC<ContactModalProps> = ({
             )}
           </button>
 
-          {/* ONLY show WhatsApp button when a valid number is configured */}
           {hasValidWhatsApp && (
             <div className="w-full sm:w-auto flex flex-col items-center">
               <a
                 href={whatsappUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-2.5 rounded-xl text-sm font-medium bg-[#173D35] text-bg-warm hover:bg-[#1E4D43] transition-colors shadow-xs"
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-2.5 rounded-full text-xs font-mono uppercase tracking-wider font-bold bg-white text-black hover:bg-atelier-emerald transition-colors"
               >
                 <Send className="w-4 h-4" />
                 通过 WhatsApp 发送
               </a>
-              <span className="text-[10px] text-brand-muted mt-1">
+              <span className="text-[10px] font-mono text-atelier-muted mt-1">
                 唤起后需在 WhatsApp 中点击发送
               </span>
             </div>
