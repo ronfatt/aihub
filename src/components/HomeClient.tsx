@@ -18,7 +18,6 @@ interface HomeClientProps {
 
 export const HomeClient: React.FC<HomeClientProps> = ({
   initialProjects = projectsData,
-  initialConfig = defaultSiteConfig,
 }) => {
   const [isContactOpen, setIsContactOpen] = useState(false);
   const [targetProjectTitle, setTargetProjectTitle] = useState("");
@@ -42,18 +41,18 @@ export const HomeClient: React.FC<HomeClientProps> = ({
   };
 
   return (
-    <div className="min-h-screen bg-bg-warm text-brand-text flex flex-col selection:bg-brand-green selection:text-bg-warm">
+    <div className="min-h-screen bg-[#F5F6F8] text-heading flex flex-col selection:bg-brand-green selection:text-white">
       {/* Top Navbar */}
       <Navbar onOpenContact={() => handleOpenContact()} />
 
       <main className="flex-1">
-        {/* Hero Section */}
+        {/* Compact Hero Section (380-460px height) */}
         <Hero
           onOpenContact={(title) => handleOpenContact(title)}
           onExploreProjects={handleExploreProjects}
         />
 
-        {/* Demo Projects Showcase */}
+        {/* Demo Projects Showcase (Dominant Body of Home) */}
         <ProjectsSection
           initialProjects={initialProjects}
           onCustomSimilar={(projectTitle, projectUrl) =>
@@ -61,13 +60,13 @@ export const HomeClient: React.FC<HomeClientProps> = ({
           }
         />
 
-        {/* Custom Services Directions */}
-        <ServicesSection onOpenContact={() => handleOpenContact()} />
+        {/* Streamlined Services Section */}
+        <ServicesSection />
 
-        {/* 4-Step Collaboration Workflow */}
+        {/* Concise 4-Step Collaboration Workflow */}
         <WorkflowSection />
 
-        {/* Bottom Contact CTA */}
+        {/* Focused Contact CTA Bar */}
         <ContactSection onOpenContact={() => handleOpenContact()} />
       </main>
 

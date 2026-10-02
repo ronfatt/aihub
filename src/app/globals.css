@@ -3,16 +3,16 @@
 @tailwind utilities;
 
 :root {
-  --bg-warm: #F7F5F0;
+  --canvas: #F5F6F8;
+  --heading: #17212B;
   --brand-green: #173D35;
-  --brand-gold: #B49761;
-  --brand-text: #252925;
+  --muted: #5E6977;
 }
 
 html {
   scroll-behavior: smooth;
-  background-color: #F7F5F0;
-  color: #252925;
+  background-color: #F5F6F8;
+  color: #17212B;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -34,28 +34,28 @@ html {
 body {
   min-height: 100vh;
   overflow-x: hidden;
-  background-color: #F7F5F0;
-  color: #252925;
+  background-color: #F5F6F8;
+  color: #17212B;
+  font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
 }
 
-/* Custom Scrollbar for clean aesthetics */
+/* Crisp Clean Scrollbar */
 ::-webkit-scrollbar {
   width: 6px;
   height: 6px;
 }
 ::-webkit-scrollbar-track {
-  background: #F7F5F0;
+  background: #F5F6F8;
 }
 ::-webkit-scrollbar-thumb {
-  background: #D9D3C7;
+  background: #D2D6DE;
   border-radius: 3px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #B49761;
+  background: #94A3B8;
 }
 
-/* Subtle selection color */
 ::selection {
   background-color: #173D35;
-  color: #F7F5F0;
+  color: #FFFFFF;
 }

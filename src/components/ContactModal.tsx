@@ -157,7 +157,7 @@ export const ContactModal: React.FC<ContactModalProps> = ({
 
   return (
     <div
-      className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 md:p-6 bg-[#173D35]/60 backdrop-blur-sm transition-opacity"
+      className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 md:p-6 bg-[#17212B]/50 backdrop-blur-sm transition-opacity"
       role="dialog"
       aria-modal="true"
       aria-labelledby="contact-modal-title"
@@ -167,25 +167,25 @@ export const ContactModal: React.FC<ContactModalProps> = ({
     >
       <div
         ref={modalRef}
-        className="relative w-full max-w-2xl max-h-[92vh] overflow-y-auto bg-[#F7F5F0] border border-brand-border rounded-2xl shadow-modal flex flex-col text-brand-text animate-in fade-in zoom-in-95 duration-200"
+        className="relative w-full max-w-2xl max-h-[92vh] overflow-y-auto bg-white border border-brand-border rounded-xl shadow-modal flex flex-col text-heading animate-in fade-in zoom-in-95 duration-150"
       >
         {/* Modal Header */}
-        <div className="sticky top-0 z-10 flex items-center justify-between px-6 py-4 border-b border-brand-border/70 bg-[#F7F5F0]/95 backdrop-blur-sm">
+        <div className="sticky top-0 z-10 flex items-center justify-between px-6 py-4 border-b border-brand-border bg-[#F5F6F8]/95 backdrop-blur-sm">
           <div>
             <h3
               id="contact-modal-title"
-              className="text-lg sm:text-xl font-serif font-medium text-brand-green tracking-wide"
+              className="text-base sm:text-lg font-sans font-semibold text-heading"
             >
               讨论专属数字系统定制
             </h3>
-            <p className="text-xs text-brand-muted mt-0.5">
+            <p className="text-xs text-muted mt-0.5 font-sans">
               填写您的专业偏好，即可一键生成结构化咨询方案
             </p>
           </div>
           <button
             onClick={onClose}
             aria-label="关闭面板"
-            className="p-1.5 rounded-lg text-brand-muted hover:text-brand-green hover:bg-brand-border/40 transition-colors"
+            className="p-1.5 rounded-lg text-muted hover:text-heading hover:bg-brand-border/40 transition-colors"
           >
             <X className="w-5 h-5" />
           </button>
