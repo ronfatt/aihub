@@ -38,30 +38,30 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({
         {/* Curatorial Header Row */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10 pb-6 border-b border-white/[0.08]">
           <div className="space-y-1.5">
-            <div className="flex items-center gap-2 text-[10px] font-mono tracking-widest text-atelier-emerald uppercase">
-              <span className="w-1.5 h-1.5 rounded-full bg-atelier-emerald animate-pulse" />
-              <span>INTERACTIVE PROTOTYPE GALLERY</span>
+            <div className="flex items-center gap-2 text-[10px] font-mono tracking-widest text-palette-gold uppercase">
+              <span className="w-1.5 h-1.5 rounded-full bg-palette-red animate-pulse" />
+              <span>INTERACTIVE PROTOTYPE GALLERY // 数字展厅</span>
             </div>
             <h2 className="text-2xl sm:text-3xl lg:text-4xl font-sans font-extrabold text-white tracking-tight">
               可直接体验的数字作品
             </h2>
-            <p className="text-xs sm:text-sm text-atelier-secondary font-sans max-w-xl">
+            <p className="text-xs sm:text-sm text-palette-muted font-sans max-w-xl">
               点击进入独立演示页面体验完整交互，所有项目均为真实线上运行版本。
             </p>
           </div>
 
           {/* Search & View Mode Switch */}
           <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
-            {/* View Mode Toggle (International Studio Detail) */}
-            <div className="hidden sm:flex items-center p-1 rounded-lg border border-white/[0.08] bg-white/[0.02]">
+            {/* View Mode Toggle */}
+            <div className="hidden sm:flex items-center p-1 rounded-lg border border-white/[0.08] bg-[#181A20]">
               <button
                 type="button"
                 onClick={() => setViewMode("grid")}
                 aria-label="网格视图"
                 className={`p-1.5 rounded text-xs transition-colors flex items-center gap-1.5 ${
                   viewMode === "grid"
-                    ? "bg-white/10 text-white font-medium"
-                    : "text-atelier-muted hover:text-white"
+                    ? "bg-palette-gold/20 text-palette-gold font-bold"
+                    : "text-palette-muted hover:text-white"
                 }`}
               >
                 <LayoutGrid className="w-4 h-4" />
@@ -73,8 +73,8 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({
                 aria-label="列表视图"
                 className={`p-1.5 rounded text-xs transition-colors flex items-center gap-1.5 ${
                   viewMode === "list"
-                    ? "bg-white/10 text-white font-medium"
-                    : "text-atelier-muted hover:text-white"
+                    ? "bg-palette-gold/20 text-palette-gold font-bold"
+                    : "text-palette-muted hover:text-white"
                 }`}
               >
                 <List className="w-4 h-4" />
@@ -82,20 +82,20 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({
               </button>
             </div>
 
-            {/* Monospaced Command-Style Search Bar */}
+            {/* Monospaced Search Input */}
             <div className="relative w-full sm:w-72">
-              <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-atelier-muted" />
+              <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-palette-muted" />
               <input
                 type="text"
                 placeholder="搜索展品名称..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full pl-9 pr-8 py-2 text-xs font-mono rounded-lg border border-white/[0.1] bg-[#12161C] text-white placeholder:text-atelier-muted/80 focus:outline-none focus:border-atelier-emerald focus:ring-1 focus:ring-atelier-emerald"
+                className="w-full pl-9 pr-8 py-2 text-xs font-mono rounded-lg border border-white/[0.1] bg-[#181A20] text-white placeholder:text-palette-muted/80 focus:outline-none focus:border-palette-gold focus:ring-1 focus:ring-palette-gold"
               />
               {searchQuery && (
                 <button
                   onClick={() => setSearchQuery("")}
-                  className="absolute right-2.5 top-1/2 -translate-y-1/2 text-[10px] font-mono text-atelier-muted hover:text-white"
+                  className="absolute right-2.5 top-1/2 -translate-y-1/2 text-[10px] font-mono text-palette-gold hover:text-white"
                 >
                   [CLEAR]
                 </button>
@@ -114,9 +114,9 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({
                 return (
                   <div
                     key={project.id}
-                    className="group relative bg-[#13161C] rounded-xl border border-white/[0.08] hover:border-white/20 transition-all duration-300 shadow-atelier flex flex-col overflow-hidden"
+                    className="group relative bg-[#181A20] rounded-xl border border-white/[0.08] hover:border-palette-gold/50 transition-all duration-300 shadow-atelier flex flex-col overflow-hidden"
                   >
-                    {/* Cover Art in Clean Museum Frame */}
+                    {/* Cover Art in Museum Frame */}
                     <Link
                       href={`/projects/${project.slug}`}
                       className="block focus:outline-none"
@@ -132,31 +132,31 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({
                     {/* Metadata & Actions */}
                     <div className="p-5 sm:p-6 flex-1 flex flex-col justify-between space-y-4">
                       <div className="space-y-2">
-                        <div className="flex items-center justify-between text-[10px] font-mono text-atelier-muted uppercase tracking-widest">
-                          <span className="text-atelier-gold font-medium">
+                        <div className="flex items-center justify-between text-[10px] font-mono uppercase tracking-widest">
+                          <span className="text-palette-gold font-bold">
                             ARCHIVE // {indexStr}
                           </span>
-                          <span>DIGITAL WORK</span>
+                          <span className="text-palette-red font-medium">LIVE DEMO</span>
                         </div>
 
                         <Link href={`/projects/${project.slug}`}>
-                          <h3 className="text-lg sm:text-xl font-sans font-bold text-white group-hover:text-atelier-emerald transition-colors tracking-tight">
+                          <h3 className="text-lg sm:text-xl font-sans font-bold text-white group-hover:text-palette-gold transition-colors tracking-tight">
                             {project.title}
                           </h3>
                         </Link>
 
-                        <p className="text-xs sm:text-sm text-atelier-secondary font-sans leading-relaxed line-clamp-2">
+                        <p className="text-xs sm:text-sm text-palette-muted font-sans leading-relaxed line-clamp-2">
                           {project.description || "打开演示页面，亲自探索与体验"}
                         </p>
                       </div>
 
-                      {/* Fashion Studio Action Row */}
+                      {/* Red + Gold Action Row */}
                       <div className="pt-4 border-t border-white/[0.06] flex items-center gap-2.5">
                         <a
                           href={project.url}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="inline-flex items-center justify-center gap-1.5 px-4 py-2.5 rounded-lg text-xs font-mono uppercase tracking-wider font-semibold bg-white text-black hover:bg-atelier-emerald hover:text-black transition-colors flex-1"
+                          className="inline-flex items-center justify-center gap-1.5 px-4 py-2.5 rounded-lg text-xs font-mono uppercase tracking-wider font-bold bg-palette-red text-white hover:bg-palette-redHover transition-colors shadow-redGlow flex-1"
                           aria-label={`打开体验 ${project.title}（新窗口）`}
                         >
                           <span>打开体验</span>
@@ -165,11 +165,11 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({
 
                         <Link
                           href={`/projects/${project.slug}`}
-                          className="inline-flex items-center justify-center gap-1 px-3.5 py-2.5 rounded-lg text-xs font-mono uppercase tracking-wider font-semibold bg-white/[0.04] text-white border border-white/10 hover:border-white/30 hover:bg-white/10 transition-colors"
+                          className="inline-flex items-center justify-center gap-1 px-3.5 py-2.5 rounded-lg text-xs font-mono uppercase tracking-wider font-semibold bg-white/[0.04] text-white border border-white/10 hover:border-palette-gold/50 hover:text-palette-gold transition-colors"
                           aria-label={`查看 ${project.title} 介绍`}
                         >
                           <span>介绍</span>
-                          <ArrowRight className="w-3.5 h-3.5 text-atelier-secondary" />
+                          <ArrowRight className="w-3.5 h-3.5 text-palette-gold" />
                         </Link>
                       </div>
                     </div>
@@ -178,8 +178,8 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({
               })}
             </div>
           ) : (
-            /* Index List View (Ultra-Fashionable International Portfolio Layout) */
-            <div className="border border-white/[0.08] rounded-xl overflow-hidden divide-y divide-white/[0.06] bg-[#111418]">
+            /* Index List View */
+            <div className="border border-white/[0.08] rounded-xl overflow-hidden divide-y divide-white/[0.06] bg-[#181A20]">
               {filteredProjects.map((project: Project, idx: number) => {
                 const indexStr = String(idx + 1).padStart(2, "0");
                 return (
@@ -188,17 +188,17 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({
                     className="group p-5 sm:p-6 flex flex-col sm:flex-row sm:items-center justify-between gap-4 hover:bg-white/[0.03] transition-colors"
                   >
                     <div className="flex items-center gap-4 sm:gap-6 min-w-0">
-                      <span className="font-mono text-xs text-atelier-gold shrink-0">
+                      <span className="font-mono text-xs text-palette-gold font-bold shrink-0">
                         {indexStr}
                       </span>
                       <div className="min-w-0">
                         <Link
                           href={`/projects/${project.slug}`}
-                          className="text-base sm:text-lg font-bold text-white group-hover:text-atelier-emerald transition-colors truncate block"
+                          className="text-base sm:text-lg font-bold text-white group-hover:text-palette-gold transition-colors truncate block"
                         >
                           {project.title}
                         </Link>
-                        <p className="text-xs text-atelier-muted truncate font-sans mt-0.5">
+                        <p className="text-xs text-palette-muted truncate font-sans mt-0.5">
                           {project.description || "打开演示页面，亲自探索与体验"}
                         </p>
                       </div>
@@ -207,7 +207,7 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({
                     <div className="flex items-center gap-3 shrink-0 self-end sm:self-center">
                       <Link
                         href={`/projects/${project.slug}`}
-                        className="px-3 py-1.5 rounded text-xs font-mono uppercase tracking-wider text-atelier-secondary hover:text-white border border-white/10 hover:border-white/30"
+                        className="px-3.5 py-1.5 rounded text-xs font-mono uppercase tracking-wider text-palette-muted hover:text-palette-gold border border-white/10 hover:border-palette-gold/40"
                       >
                         档案详情
                       </Link>
@@ -215,7 +215,7 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({
                         href={project.url}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex items-center gap-1.5 px-4 py-1.5 rounded text-xs font-mono uppercase tracking-wider font-semibold bg-white text-black hover:bg-atelier-emerald"
+                        className="inline-flex items-center gap-1.5 px-4 py-1.5 rounded text-xs font-mono uppercase tracking-wider font-bold bg-palette-red text-white hover:bg-palette-redHover shadow-redGlow"
                       >
                         <span>进入系统</span>
                         <ExternalLink className="w-3.5 h-3.5" />
@@ -228,17 +228,17 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({
           )
         ) : (
           /* Empty Search State */
-          <div className="py-20 text-center rounded-xl border border-dashed border-white/15 p-8 max-w-md mx-auto bg-[#111418]">
-            <SlidersHorizontal className="w-8 h-8 text-atelier-muted mx-auto mb-3" />
+          <div className="py-20 text-center rounded-xl border border-dashed border-white/15 p-8 max-w-md mx-auto bg-[#181A20]">
+            <SlidersHorizontal className="w-8 h-8 text-palette-muted mx-auto mb-3" />
             <h4 className="text-sm font-mono uppercase tracking-widest text-white">
               NO EXHIBITS FOUND // 未找到匹配展品
             </h4>
-            <p className="text-xs text-atelier-muted mt-1.5 font-sans leading-relaxed">
+            <p className="text-xs text-palette-muted mt-1.5 font-sans leading-relaxed">
               请检查关键词 “{searchQuery}”，或重置检索查看完整收录系统。
             </p>
             <button
               onClick={() => setSearchQuery("")}
-              className="mt-4 px-4 py-2 rounded-full text-xs font-mono uppercase tracking-wider bg-white text-black hover:bg-atelier-emerald"
+              className="mt-4 px-4 py-2 rounded-full text-xs font-mono uppercase tracking-wider bg-palette-red text-white hover:bg-palette-redHover shadow-redGlow"
             >
               RESET ARCHIVE
             </button>

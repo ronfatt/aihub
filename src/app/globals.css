@@ -3,16 +3,17 @@
 @tailwind utilities;
 
 :root {
-  --bg: #0A0C0E;
-  --text: #F8FAFC;
-  --accent-emerald: #10B981;
+  --bg-dark: #111215;
+  --accent-red: #D92638;
   --accent-gold: #D4AF37;
+  --text-white: #FFFFFF;
+  --text-muted: #88909D;
 }
 
 html {
   scroll-behavior: smooth;
-  background-color: #0A0C0E;
-  color: #F8FAFC;
+  background-color: #111215;
+  color: #FFFFFF;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -34,31 +35,31 @@ html {
 body {
   min-height: 100vh;
   overflow-x: hidden;
-  background-color: #0A0C0E;
-  color: #F8FAFC;
+  background-color: #111215;
+  color: #FFFFFF;
   background-image: 
-    radial-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px);
+    radial-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px);
   background-size: 32px 32px;
 }
 
-/* Luxury Dark Gallery Scrollbar */
+/* Smoked Charcoal Dark Scrollbar with Gold/Red accent */
 ::-webkit-scrollbar {
   width: 5px;
   height: 5px;
 }
 ::-webkit-scrollbar-track {
-  background: #0A0C0E;
+  background: #111215;
 }
 ::-webkit-scrollbar-thumb {
-  background: #232830;
+  background: #2A2E38;
   border-radius: 2px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #10B981;
+  background: #D4AF37;
 }
 
-/* Electric Emerald / Gold Selection */
+/* Crimson Red & Pure White Selection */
 ::selection {
-  background-color: #10B981;
-  color: #0A0C0E;
+  background-color: #D92638;
+  color: #FFFFFF;
 }

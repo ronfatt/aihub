@@ -9,20 +9,31 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        atelier: {
-          bg: "#0A0C0E",        // Deep obsidian gallery space
-          surface: "#111418",   // Subtle elevated surface
-          card: "#15191E",      // Elevated showcase card
-          cardHover: "#1A2026",
-          border: "rgba(255, 255, 255, 0.08)",
-          borderLight: "rgba(255, 255, 255, 0.16)",
-          emerald: "#10B981",   // Modern digital emerald
-          emeraldGlow: "rgba(16, 185, 129, 0.15)",
-          gold: "#D4AF37",      // Haute couture gold accent
-          goldLight: "rgba(212, 175, 55, 0.12)",
-          text: "#F8FAFC",      // Pure optic white for headings
-          secondary: "#94A3B8", // Cool slate
-          muted: "#64748B",     // Subtle monospaced slate
+        palette: {
+          // Deep Charcoal Dark Grays
+          bg: "#111215",        // Smoked Charcoal Canvas
+          surface: "#181A20",   // Elevated Dark Gray
+          card: "#1E2129",      // Dark Gray Card
+          cardHover: "#262A34",
+          border: "rgba(255, 255, 255, 0.09)",
+          borderLight: "rgba(255, 255, 255, 0.18)",
+          muted: "#88909D",     // Secondary Cool Slate Gray
+          subtle: "#5A6270",
+
+          // Imperial Cinnabar Red
+          red: "#D92638",       // Haute Couture Crimson Red
+          redHover: "#B91C2D",
+          redGlow: "rgba(217, 38, 56, 0.22)",
+
+          // Haute Burnished Gold
+          gold: "#D4AF37",      // Antique Champagne Gold
+          goldHover: "#C49E28",
+          goldLight: "rgba(212, 175, 55, 0.14)",
+          goldGlow: "rgba(212, 175, 55, 0.25)",
+
+          // Pure Optical White (a touch of white for accents & punchy contrast)
+          white: "#FFFFFF",
+          whiteSoft: "#F3F4F6",
         },
       },
       fontFamily: {
@@ -46,13 +57,6 @@ const config: Config = {
           "Consolas",
           "monospace",
         ],
-        serif: [
-          '"Cinzel"',
-          '"Songti SC"',
-          '"Noto Serif SC"',
-          "Georgia",
-          "serif",
-        ],
       },
       letterSpacing: {
         tighter: "-0.04em",
@@ -62,8 +66,8 @@ const config: Config = {
       },
       boxShadow: {
         atelier: "0 0 0 1px rgba(255, 255, 255, 0.08), 0 20px 40px -15px rgba(0, 0, 0, 0.7)",
-        glow: "0 0 30px -5px rgba(16, 185, 129, 0.25)",
-        goldGlow: "0 0 30px -5px rgba(212, 175, 55, 0.2)",
+        redGlow: "0 0 35px -5px rgba(217, 38, 56, 0.35)",
+        goldGlow: "0 0 35px -5px rgba(212, 175, 55, 0.3)",
       },
       maxWidth: {
         exhibition: "1380px",
